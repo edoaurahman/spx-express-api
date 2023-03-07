@@ -18,6 +18,6 @@
   "homepage": "https://github.com/edoaurahman/spx-express-api",
   "dependencies": {
     "express": "^4.18.2",
-    "puppeteer": "^19.7.3"
+    "puppeteer": "2.0.0"
   }
 }
