@@ -1,18 +1,15 @@
 const express = require('express')
 const app = express()
-const cheerio = require('cheerio');
 const axios = require('axios');
-const scraperjs = require('scraperjs');
 
-app.get('/tracking', (req, res) => {
-    scraperjs.DynamicScraper.create('https://spx.co.id/m/tracking-detail/SPXID030360806343')
-    .scrape(function($) {
-        return $(".log-item").map(function() {
-            return $(this).find(".log-item-status").text();
-        }).get();
-    })
-    .then(function(news) {
-        console.log(news);
-    })
+app.get('/tracking', async (req, res) => {
+    const url = 'https://everpro.id/fitur-cek-resi/php/lacak_paket.php';
+    var data = new FormData();
+    data.append('resi', 'SPXID030360806343');
+    data.append('kurir', 'spx');
+    axios.post(url, data)
+        .then(response => {
+            res.send(response.data)
+        })
 })
 app.listen(process.env.PORT || 3000)
